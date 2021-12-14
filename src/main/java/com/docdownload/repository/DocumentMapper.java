@@ -47,5 +47,5 @@ public interface DocumentMapper {
 	      "    <if test='fromDate != null &amp;&amp; toDate != null'>AND cast(upload_time as date) BETWEEN #{fromDate} AND #{toDate}</if>",
 	      "  </where>",
 	      "</script>"})
-	public List<Document> findAllByCompleteStatus(String stat, String doc_type, String customer_id, String fromDate, String toDate);
+	public List<Document> findAllBySearchFilterCriteria(String stat, String doc_type, String customer_id, String fromDate, String toDate);
 }

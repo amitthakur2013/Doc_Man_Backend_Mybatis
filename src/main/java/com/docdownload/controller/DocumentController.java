@@ -64,7 +64,7 @@ public class DocumentController {
 	@GetMapping("/criteria")
 	public ResponseEntity<?> findByCriteria() {
 
-		List<Document> docs=repo.findAllByCompleteStatus("rejected",null,null,"2021-11-26" ,"2021-11-28");
+		List<Document> docs=repo.findAllBySearchFilterCriteria("rejected",null,null,"2021-11-26" ,"2021-11-28");
 		return ResponseEntity.ok(docs);
 	}
 
