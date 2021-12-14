@@ -1,6 +1,7 @@
 package com.docdownload.controller;
 
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -55,6 +56,15 @@ public class DocumentController {
 	public ResponseEntity<?> viewHomePage() {
 
 		List<Document> docs=docService.getAllByPendingStatus();
+		return ResponseEntity.ok(docs);
+	}
+	
+	// FIND BY CRITERIA
+
+	@GetMapping("/criteria")
+	public ResponseEntity<?> findByCriteria() {
+
+		List<Document> docs=repo.findAllByCompleteStatus("rejected",null,null,"2021-11-26" ,"2021-11-28");
 		return ResponseEntity.ok(docs);
 	}
 

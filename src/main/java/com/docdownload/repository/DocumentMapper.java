@@ -36,4 +36,16 @@ public interface DocumentMapper {
 
 	@Update("Update documents set status=#{status}, updated_on=#{dt}, reject_reasons=#{reasons} where id=#{id}")
 	public int updateStatus(Long id, String status, Date dt, String reasons);
+	
+	
+	@Select({"<script>",
+	      "select * from documents",
+	      "  <where>",
+	      "    <if test='stat != null'>status=#{stat}</if>",
+	      "    <if test='doc_type != null'>AND doc_type=#{doc_type}</if>",
+	      "    <if test='customer_id != null'>AND customer_id=#{customer_id}</if>",
+	      "    <if test='fromDate != null &amp;&amp; toDate != null'>AND cast(upload_time as date) BETWEEN #{fromDate} AND #{toDate}</if>",
+	      "  </where>",
+	      "</script>"})
+	public List<Document> findAllByCompleteStatus(String stat, String doc_type, String customer_id, String fromDate, String toDate);
 }

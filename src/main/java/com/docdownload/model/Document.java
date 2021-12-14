@@ -27,6 +27,8 @@ public class Document implements Serializable {
 	private Date uploadTime;
 
 	private Date updatedOn;
+	
+	private String docType;
 
 	@JsonIgnore
 	private byte[] content;
@@ -35,7 +37,7 @@ public class Document implements Serializable {
 
 	}
 
-	public Document(Long id, String customerId, String docCorrespondingNumber, String status, Date uploadTime, String fileType) {
+	public Document(Long id, String customerId, String docCorrespondingNumber, String status, Date uploadTime, String fileType, String docType) {
 		super();
 		this.id = id;
 		this.customerId = customerId;
@@ -43,6 +45,17 @@ public class Document implements Serializable {
 		this.status = status;
 		this.uploadTime = uploadTime;
 		this.fileType=fileType;
+		this.docType=docType;
+	}
+	
+	
+
+	public String getDocType() {
+		return docType;
+	}
+
+	public void setDocType(String docType) {
+		this.docType = docType;
 	}
 
 	public String getCustomerId() {
