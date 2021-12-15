@@ -64,6 +64,10 @@ public class DocumentController {
 
 	@PostMapping("/criteria")
 	public ResponseEntity<?> findByCriteria(@RequestBody SearchFilterRequest searchFilterRequest) {
+		
+		if(searchFilterRequest.getCustomerId() == "") {
+			searchFilterRequest.setCustomerId(null);
+		}
 
 		List<Document> docs=docService.getAllBySearchFilterCriteria(searchFilterRequest);
 		

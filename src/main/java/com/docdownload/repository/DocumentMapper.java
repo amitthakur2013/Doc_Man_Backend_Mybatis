@@ -47,6 +47,7 @@ public interface DocumentMapper {
 	      "    <if test='customerId != null'>AND customer_id=#{customerId}</if>",
 	      "    <if test='fromDate != null &amp;&amp; toDate != null'>AND cast(upload_time as date) BETWEEN #{fromDate} AND #{toDate}</if>",
 	      "  </where>",
+	      "order by upload_time",
 	      "</script>"})
 	public List<Document> findAllBySearchFilterCriteria(SearchFilterRequest searchFilterRequest);
 }
