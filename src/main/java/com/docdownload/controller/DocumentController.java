@@ -39,6 +39,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.docdownload.model.Document;
 import com.docdownload.repository.DocumentMapper;
 import com.docdownload.service.DocumentServiceImpl;
+import com.docdownload.utility.SearchFilterRequest;
 
 @Controller
 public class DocumentController {
@@ -59,12 +60,13 @@ public class DocumentController {
 		return ResponseEntity.ok(docs);
 	}
 	
-	// FIND BY CRITERIA
+	// FIND BY SEARCH AND FILTER CRITERIA
 
-	@GetMapping("/criteria")
-	public ResponseEntity<?> findByCriteria() {
+	@PostMapping("/criteria")
+	public ResponseEntity<?> findByCriteria(@RequestBody SearchFilterRequest searchFilterRequest) {
 
-		List<Document> docs=repo.findAllBySearchFilterCriteria("rejected",null,null,"2021-11-26" ,"2021-11-28");
+		List<Document> docs=docService.getAllBySearchFilterCriteria(searchFilterRequest);
+		
 		return ResponseEntity.ok(docs);
 	}
 

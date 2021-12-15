@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.docdownload.model.Document;
+import com.docdownload.utility.SearchFilterRequest;
 
 @Repository
 @Mapper
@@ -41,11 +42,11 @@ public interface DocumentMapper {
 	@Select({"<script>",
 	      "select * from documents",
 	      "  <where>",
-	      "    <if test='stat != null'>status=#{stat}</if>",
-	      "    <if test='doc_type != null'>AND doc_type=#{doc_type}</if>",
-	      "    <if test='customer_id != null'>AND customer_id=#{customer_id}</if>",
+	      "    <if test='status != null'>status=#{status}</if>",
+	      "    <if test='docType != null'>AND doc_type=#{docType}</if>",
+	      "    <if test='customerId != null'>AND customer_id=#{customerId}</if>",
 	      "    <if test='fromDate != null &amp;&amp; toDate != null'>AND cast(upload_time as date) BETWEEN #{fromDate} AND #{toDate}</if>",
 	      "  </where>",
 	      "</script>"})
-	public List<Document> findAllBySearchFilterCriteria(String stat, String doc_type, String customer_id, String fromDate, String toDate);
+	public List<Document> findAllBySearchFilterCriteria(SearchFilterRequest searchFilterRequest);
 }
